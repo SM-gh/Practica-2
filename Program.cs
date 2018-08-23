@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +10,42 @@ namespace Aeronaves
     {
         static void Main(string[] args)
         {
-            string tipo = " ";
+            char tipo=' ';
+            string pstring;
 
-            Console.WriteLine("Da el modelo del avión comercial:");
-            tipo = Console.ReadLine();
+            Comercial Avioncito = new Comercial();
 
-            Avion Avioncito = new AComercial(AComercial.modelo);
+            Console.WriteLine("Escoge el tipo de avion: \na>Comercial\nb)Militar\nc)Carga");
+            tipo = Console.ReadKey().KeyChar;
 
-            Console.WriteLine("La es un avion tipo comercial, modelo {0}", );
-            Console.ReadKey();
+            if (tipo == 'a' || tipo == 'A')
+            {
+                Console.Clear();
+                Console.WriteLine("¿Cuál es tu número de pasajero?");
+                pstring = Console.ReadLine(); 
+                Avioncito.p = Convert.ToInt16(pstring);
+                if (Avioncito.p <= 0 || Avioncito.p > 200)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Error, no existe ese número de pasajero");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nTu avión es de tipo comercial \nModelo: {0} \nNúmero de pasajero: {1}\nMotores: {2}\nEstado:", Avioncito.SetModelo(), Avioncito.p, Avioncito.SetNummotores());
+                    Avioncito.Volar();
+                    Console.WriteLine("Velocidad: {0} Km/h", Avioncito.SetVelovidad());
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Avión no disponible");
+                Console.ReadKey();
+            }
+
         }
     }
 }
